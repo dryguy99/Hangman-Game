@@ -9,22 +9,23 @@
 <body>
 
 	<section>
-		<div class="row">
+		<div class="row text-center">
 			<h1>Hangman</h1>
 			<!-- the following will only appear after a win -->
-			<h2 id="answer"></h2>
+			<h2 id="answer">answer</h2>
 		</div>
+	<div class="row">
 		<!-- movie picture -->
-		<div col-md-6>
-			<img src="#" alt="">
+		<div class="col-md-6 text-center thumbnail">
+			<img src="assets/images/american-sniper.jpg" alt="">
 		</div>
 		<!-- game play pannel -->
 		<div class="col-md-6 text-center">
 			<h3>Press Any key to start.</h3>
 			<br>
 			<!-- display win and loss count -->
-			<span>WINS</span><span>LOSSES</span><br>
-			<span id"wincount"></span><span id="losscount"></span>
+			<span>WINS  </span><span>- LOSSES</span><br>
+			<span id"wincount">0 </span><span>-</span></span><span id="losscount"> 0</span>
 			<br>
 			<!--display current word or spaces -->
 			<p>Current Word</p>
@@ -38,6 +39,7 @@
 			<p>Letters Guessed</p>
 			<span id="letters"></span>
 		</div>
+	</div>
 	</section>
 
 
