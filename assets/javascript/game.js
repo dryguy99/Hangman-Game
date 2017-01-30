@@ -16,24 +16,26 @@ function shoot() {
     document.getElementById("movie").innerHTML = movietitleWithBlanks;
  	};   */
 /* pick movie title at random and set spaces */
-(function initialize() {
+function initialize() {
 	computerPick = movieArray[Math.floor(Math.random() * movieArray.length)];
     console.log(computerPick);
     movietitleWithBlanks = computerPick.replace(/\w/g,"_ ");
     document.getElementById("movie").innerHTML = movietitleWithBlanks;
-})();
+}
+initialize();
 
 function shoot() {
-	document.getElementById("letters").addEventListener("keyup", myFunction);
-
+	document.getElementById("letters").addEventListener("keyup", myFunction());
+}
 function myFunction() {
     var x = document.getElementById("letters");
     x.value = x.value.tolowerCase();
+
 }
-}
-$(document).keyup(function(){
-	pressedButton = $
-}
+document.onkeyup = function(event) {
+	pressedButton = event.key;
+	alert(pressedButton);
+} ;
 /* get keypress 
 $("#letters").keydown (function (e) {
     alert ($(this).val());
