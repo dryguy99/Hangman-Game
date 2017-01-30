@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Hangman | by Timothy Dry</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script type="text/javascript" language="javascript" src="assets/javascript/game.js"> </script>
+	
 </head>
 <body>
 
@@ -32,14 +32,14 @@
 			<span id="movie"></span>
 			<br>
 			<!-- display number of guesses remaining -->
-			<p>Number of Guesses Remaining</p><input type="onkeyup" id="letters">
-			<p><span>12</span></p>
+			<p>Number of Guesses Remaining</p>
+			<p><span id="guesscount">12</span></p>
 			
 			<br>
 			<!-- display used letters -->
-			<div id="letters">
+			<div>
 				<p>Letters Guessed:</p>
-				<input onkeyup="shoot ()">
+				<element type="text" onkeyup="shoot ()" id="letters"></element>
 			</div>
 			
 		</div>
@@ -48,4 +48,5 @@
 
 
 </body>
+<script type="text/javascript" language="javascript" src="assets/javascript/game.js"> </script>
 </html>
