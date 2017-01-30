@@ -32,13 +32,16 @@
 			<span id="movie"></span>
 			<br>
 			<!-- display number of guesses remaining -->
-			<p>Number of Guesses Remaining</p>
-			<span id="guesscount"></span>
+			<p>Number of Guesses Remaining</p><input type="onkeyup" id="letters">
+			<p><span>12</span></p>
+			
 			<br>
 			<!-- display used letters -->
-			<p>Letters Guessed</p>
-			<span id="letters"></span>
-			<div onkeyup="">
+			<div id="letters">
+				<p>Letters Guessed:</p>
+				<input onkeyup="shoot ()">
+			</div>
+			
 		</div>
 	</div>
 	</section>
