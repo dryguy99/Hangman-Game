@@ -4,9 +4,42 @@
 	<meta charset="utf-8">
 	<title>Hangman | by Timothy Dry</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="assets/javascript/game.js></script>
+	<script src="assets/javascript/game.js"> </script>
 </head>
 <body>
+
+	<section>
+		<div class="row">
+			<h1>Hangman</h1>
+			<!-- the following will only appear after a win -->
+			<h2 id="answer"></h2>
+		</div>
+		<!-- movie picture -->
+		<div col-md-6>
+			<img src="#" alt="">
+		</div>
+		<!-- game play pannel -->
+		<div class="col-md-6 text-center">
+			<h3>Press Any key to start.</h3>
+			<br>
+			<!-- display win and loss count -->
+			<span>WINS</span><span>LOSSES</span><br>
+			<span id"wincount"></span><span id="losscount"></span>
+			<br>
+			<!--display current word or spaces -->
+			<p>Current Word</p>
+			<span id="movie"></span>
+			<br>
+			<!-- display number of guesses remaining -->
+			<p>Number of Guesses Remaining</p>
+			<span id="guesscount"></span>
+			<br>
+			<!-- display used letters -->
+			<p>Letters Guessed</p>
+			<span id="letters"></span>
+		</div>
+	</section>
+
 
 </body>
 </html>
