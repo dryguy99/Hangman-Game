@@ -1,3 +1,9 @@
+body {
+	font-size: 22px;
+}
 .mythumbnail {
-	max-height: 50px;
+	max-height: 100px;
+}
+.myletters {
+	font-weight: 500;
 }
