@@ -57,7 +57,7 @@ function printLetters(){
   	document.getElementById("letters").innerHTML = guessList;
 }		
 
-/* check to see if selected letter is unique */
+/* check to see if selected letter is unique & add unique to array*/
 function compareLetters(item) {
 	
 	if (!(pressedButtonArray.indexOf(item) > -1) ) {
@@ -91,7 +91,7 @@ function findLetters(item) {
  				movieTitleArray[b] = item;
  				a = b + 1;
  				correctGuess();
- 				console.log("WL - index: " + a + b + " " + item + " " + movieTitleArray);
+ 				/*console.log("WL - index: " + a + b + " " + item + " " + movieTitleArray);*/
  			}
  				else {a += 1;}
  		}
@@ -110,7 +110,7 @@ function findLetters(item) {
  		winCounter++;
  		var b = movieArray.indexOf(computerPickU)
  		document.getElementById("moviepic").src = moviepicArray[b];
- 		console.log("after increment: " + winCounter);
+ 		/*console.log("after increment: " + winCounter);*/
  		document.getElementById("wincount").innerHTML = (winCounter + " -");
  		document.getElementById("losscount").innerHTML = ("- " + lossCounter);
  		document.getElementById("answer").innerHTML = computerPickU;
@@ -120,10 +120,19 @@ function findLetters(item) {
  		}
  		else { alert("GAME OVER!")}
  	}
- 	else if (guessCounter === 0) {
- 		// you lost update picture - update loss count
+ 	else if (guessCounter <= 0) {
+ 		// you lost - update picture - update loss count
  		lossCounter++;
+ 		var b = movieArray.indexOf(computerPickU)
+ 		document.getElementById("moviepic").src = moviepicArray[b];
+ 		document.getElementById("wincount").innerHTML = (winCounter + " -");
+ 		document.getElementById("losscount").innerHTML = ("- " + lossCounter);
+ 		document.getElementById("answer").innerHTML = computerPickU;
  		
+ 		if (confirm("YOU LOST!\nPlay Again?")) {
+ 			initialize();
+ 		}
+ 		else { alert("GAME OVER!")}
  	}
  }
 
