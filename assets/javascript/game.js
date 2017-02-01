@@ -4,7 +4,8 @@
 var guessCounter = 12;
 var winCounter = 0;
 var lossCounter = 0;
-var movieArray = ["Spotlight", "Birdman", "12 Years a Slave", "Argo", "The Artist", "The Kings Speach", "The Hurt Locker", "Slumdog Millionaire", "No Country for Old Men", "The Departed", "Crash", "Million Dollar Baby", "The Return of the King", "Chicago", "A Beautiful Mind", "Gladiator", "American Beauty", "Titanic", "Shakespeare in Love", "The English Patient", "Braveheart", "Forest Gump", "Schindlers List", "Unforgiven", "Dances With Wolves", "Driving Miss Daisy", "The Last Emperor", "Platoon", "Out of Aferica", "Amadeus", "Terms Of Endearment", "Ganghi", "Chariots Of Fire", "Ordinary People", "Kramer vs Kramer", "The Deer Hunter", "Annie Hall", "Rocky", "One Flew Over The Cuckoos Nest", "The Godfather Part 2", "The Sting", "The Godfather", "The French Connection", "Patton","Midnight Cowboy", "Oliver"];
+var movieArray = ["Spotlight", "Birdman", "12 Years a Slave", "Argo", "The Artist", "The Kings Speach", "The Hurt Locker", "Slumdog Millionaire", "No Country for Old Men", "The Departed", "Crash", "Million Dollar Baby", "The Return of the King", "Chicago", "A Beautiful Mind", "Gladiator", "American Beauty", "Titanic", "Shakespeare in Love", "The English Patient", "Braveheart", "Forest Gump", "Schindlers List", "Unforgiven", "Dances With Wolves", "Driving Miss Daisy", "The Last Emperor", "Platoon", "Out of Aferica", "Amadeus", "Terms Of Endearment", "Ganghi", "Chariots Of Fire", "Ordinary People", "Kramer vs Kramer", "The Deer Hunter", "Annie Hall", "Rocky", "One Flew Over The Cuckoos Nest", "The Godfather Part 2", "The Sting", "The Godfather", "The French Connection", "Patton","Midnight Cowboy", "Oliver", "In The Heat Of THe Night", "A Man For All Seasons", "The Sound Of Music"];
+var moviepicArray = ["http://www.filmsite.org/moviescreens/spotlight.jpg", "http://www.filmsite.org/pictures/birdman.jpg", "http://www.filmsite.org/credits/12yearsaslave.jpg", "http://www.filmsite.org/screens/argo.jpg", "http://www.filmsite.org/posters/artist-titlescreen.jpg", "http://www.filmsite.org/posters/kingsspeechtitle.jpg", "http://www.filmsite.org/posters/hurtlockertitle.jpg", "http://www.filmsite.org/titles/slumdogmill.jpg", "http://www.filmsite.org/filmfotos/nocountryforoldmen_title.jpg", "http://www.filmsite.org/filmfotos/departed.jpg", "http://www.filmsite.org/titles/crash2005.jpg", "http://www.filmsite.org/titles/milliondollarbaby-title.jpg", "http://www.filmsite.org/titles/lordofringsretofkingp2.jpg", "http://www.filmsite.org/titles/chicago.jpg", "http://www.filmsite.org/titles/beautifulmind-title.jpg", "http://www.filmsite.org/titles/gladiator-title.jpg", "http://www.filmsite.org/titles/americanbeauty-title.jpg", "http://www.filmsite.org/titles/shakespeareinlove-title.jpg", "http://www.filmsite.org/titles/titanic-title.jpg", "http://www.filmsite.org/titles/englishpatient-title.jpg", "http://www.filmsite.org/titles/braveheart-title.jpg", "http://www.filmsite.org/titles/forrestgump-title.jpg", "http://www.filmsite.org/titles/schindlerslist-title.jpg", "http://www.filmsite.org/titles/unforgiven-title.jpg", "http://www.filmsite.org/titles/silenceoflambs-title.jpg", "http://www.filmsite.org/titles/danceswithwolves-title.jpg", "http://www.filmsite.org/screens/drivingmissdaisy.jpg", "http://www.filmsite.org/titles/rainman-title.jpg", "http://www.filmsite.org/titles/lastemperor.jpg", "http://www.filmsite.org/titles/platoon-title.jpg", "http://www.filmsite.org/screens/outofafrica.jpg", "http://www.filmsite.org/titles/amadeus-title.jpg", "http://www.filmsite.org/titles/termsofendearment-title.jpg", "http://www.filmsite.org/titles/gandhi-title.jpg", "http://www.filmsite.org/filmfotos/chariotsfire.jpg", "http://www.filmsite.org/filmfotos/ordinarypeople6.jpg", "http://www.filmsite.org/filmfotos/kramer5.jpg", "http://www.filmsite.org/titles/deerhunter.jpg", "http://www.filmsite.org/titles/anniehall.jpg", "http://www.filmsite.org/titles/rocky-title.jpg", "http://www.filmsite.org/titles/oneflewovercuckoosnest-titl.jpg", "http://www.filmsite.org/titles/godfather1974-title.jpg", "http://www.filmsite.org/titles/sting-title.jpg", "http://www.filmsite.org/titles/godfather1972-title.jpg", "http://www.filmsite.org/titles/frenchconnection-title.jpg", "http://www.filmsite.org/titles/patton-title.jpg", "http://www.filmsite.org/titles/midnightcowboy-title.jpg", "http://www.filmsite.org/titles/oliver.jpg", "http://www.filmsite.org/titles/intheheatofnight-title.jpg", "http://www.filmsite.org/titles/manforallseasons.jpg", "http://www.filmsite.org/titles/soundofmusic-title.jpg"]
 var pressedButton = "";
 var pressedButtonArray = [""];
 var computerPick = "AMERICAN SNIPER";
@@ -25,13 +26,17 @@ function initialize() {
 	pressedButtonArray = [];
 	guessCounter = 12;
 	guessList = "";
-	computerPickU = movieArray[Math.floor(Math.random() * movieArray.length)];
-	computerPick = computerPickU.toUpperCase();
-    console.log(computerPick);
-    movietitleWithBlanks = computerPick.replace(/ /g,"9").replace(/\D/g, "_").replace(/9/g, '-');
+	computerPickU = movieArray[Math.floor(Math.random() * movieArray.length)]; /*pick random movie*/
+	computerPick = computerPickU.toUpperCase(); /*convert to all uppercase*/
+    console.log(computerPick);/*print to console for testing*/
+    /*create the correct blank lengths & display and later fill in*/
+    movietitleWithBlanks = computerPick.replace(/ /g,"9").replace(/\D/g, "_").replace(/9/g, '-'); 
     document.getElementById("movie").innerHTML = movietitleWithBlanks;
+    /*split the string up by letters into an array for comparison*/
     checkArray = computerPick.split("");
+    /*create an array of blanks for replacing by index # later*/
     movieTitleArray = movietitleWithBlanks.split("");
+    /* print the initial guess count to the screen & clear the guessed letters*/
     document.getElementById("guesscount").innerHTML = guessCounter;
     document.getElementById("letters").innerHTML = guessList;
 
@@ -47,11 +52,7 @@ function printLetters(){
   	console.log("outside: " + guessList);
   	document.getElementById("letters").innerHTML = guessList;
 }		
-/* convert all letters to uppercase */
-function myFunction() {
-    var x = document.getElementById("letters");
-    x.value = x.value.tolowerCase();
-}
+
 /* check to see if selected letter is unique */
 function compareLetters(item) {
 	
@@ -104,13 +105,14 @@ function findLetters(item) {
  		// you won message - update picture - update win count -
  		winCounter++;
  		console.log("after increment: " + winCounter);
- 		document.getElementById("wincount").innerHTML = winCounter;
+ 		document.getElementById("wincount").innerHTML = (winCounter + " - ");
  		document.getElementById("losscount").innerHTML = lossCounter;
  		document.getElementById("answer").innerHTML = computerPickU;
 
  		if (confirm("YOU WON!\nPlay Again?")) {
  			initialize();
  		}
+ 		else { alert("GAME OVER!")}
  	}
  	else if (guessCounter === 0) {
  		// you lost update picture - update loss count
@@ -132,13 +134,3 @@ document.onkeyup = function(event) {
 	printLetters();
 	winorLose();
 } 
-/* get keypress 
-$("#letters").keydown (function (e) {
-    alert ($(this).val());
-}); */
-
-/*$(document).ready(trackGuesses() {
-    $("#letters").keypress(function(){
-        $("span").text(guessCounter -= 1);
-    });
-    });*/
