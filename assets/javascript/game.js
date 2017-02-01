@@ -99,15 +99,22 @@ function findLetters(item) {
  	
  }
  function winorLose() {
+ 	console.log(winCounter)
  	if (movieTitleArray.indexOf("_") < 0) {
  		// you won message - update picture - update win count -
+ 		winCounter++;
+ 		console.log("after increment: " + winCounter);
+ 		document.getElementById("wincount").innerHTML = winCounter;
+ 		document.getElementById("losscount").innerHTML = lossCounter;
  		document.getElementById("answer").innerHTML = computerPickU;
+
  		if (confirm("YOU WON!\nPlay Again?")) {
  			initialize();
  		}
  	}
  	else if (guessCounter === 0) {
  		// you lost update picture - update loss count
+ 		lossCounter++;
  		
  	}
  }
