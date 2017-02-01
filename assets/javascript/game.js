@@ -12,6 +12,8 @@ var movietitleWithBlanks = " ";
 var guessList = " ";
 var inArray = 0;
 var checkArray = [];
+var indexN = 0;
+var movieTitleArray = [];
 
 
 /* pick random movie from movieArray 
@@ -48,16 +50,29 @@ function compareLetters(item) {
 	
 	if (!(pressedButtonArray.indexOf(item) > -1) ) {
 		pressedButtonArray.push(item);
-		console.log(pressedButtonArray);
 		};	
 }
 
 function findLetters(item) {
-	
- if (checkArray.indexOf(item) >=0) {
- 	
- 	};
-}
+
+ 	if (checkArray.indexOf(item) >=0) {
+ 		movieTitleArray = movietitleWithBlanks.split("");
+ 		var a = checkArray.indexOf(item);
+ 		movieTitleArray[a] = item;
+ 		a += 1;
+ 		console.log("index: " + a + " " + item + " " + movieTitleArray);
+ 		while ((checkArray.length - 1) >= a) {
+ 			if ((checkArray.indexOf(item, a) > 0) && (checkArray.indexOf(item, a) < checkArray.length)) {
+ 				var b = checkArray.indexOf(item, a);
+ 				movieTitleArray[b] = item;
+ 				a = b + 1;
+ 				console.log("WL - index: " + a + " " + item + " " + movieTitleArray);
+ 			}
+ 				else {a += 1;}
+ 		}
+ 	}
+ }
+ 
 
 document.onkeyup = function(event) {
 	pressedButton = event.key;
