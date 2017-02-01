@@ -21,15 +21,17 @@ function shoot() {
     
     document.getElementById("movie").innerHTML = movietitleWithBlanks;
  	};   */
-/* pick movie title at random and set spaces */
+/* start game by picking  movie title at random and set spaces for words */
 function initialize() {
 	computerPick = movieArray[Math.floor(Math.random() * movieArray.length)];
     console.log(computerPick);
     movietitleWithBlanks = computerPick.replace(/\w/g,"_ ");
     document.getElementById("movie").innerHTML = movietitleWithBlanks;
     checkArray = computerPick.split("");
+    movieTitleArray = movietitleWithBlanks.split("");
 }
 initialize();
+
 /* print guessed letters to screen*/
 function printLetters(){
   	guessList = "";
@@ -40,23 +42,23 @@ function printLetters(){
   	console.log("outside: " + guessList);
   	document.getElementById("letters").innerHTML = guessList;
 }		
-
+/* convert all letters to uppercase */
 function myFunction() {
     var x = document.getElementById("letters");
     x.value = x.value.tolowerCase();
 }
-
+/* check to see if selected letter is unique */
 function compareLetters(item) {
 	
 	if (!(pressedButtonArray.indexOf(item) > -1) ) {
 		pressedButtonArray.push(item);
 		};	
 }
-
+/* check to see if selected letter is in the title and display the letter in the correct place.*/
 function findLetters(item) {
 
  	if (checkArray.indexOf(item) >=0) {
- 		movieTitleArray = movietitleWithBlanks.split("");
+ 		
  		var a = checkArray.indexOf(item);
  		movieTitleArray[a] = item;
  		a += 1;
