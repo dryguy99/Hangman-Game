@@ -17,6 +17,8 @@ var checkArray = [];
 var indexN = 0;
 var movieTitleArray = [];
 var guessCorrect = "";
+var win = "../Hangman-Game/assets/audio/applause"
+var lose = "../Hangman-Game/assets/audio/sad-trombone"
 //for (i=0; i < movieArray.length; ++i) {
 //	console.log(i + "=" + movieArray[i] + " - " + moviepicArray[i])
 //}
@@ -55,6 +57,7 @@ function printLetters(){
  			};
   	console.log("outside: " + guessList);
   	document.getElementById("letters").innerHTML = guessList;
+  	console.log("captured");
 }		
 
 /* check to see if selected letter is unique & add unique to array*/
@@ -103,6 +106,34 @@ function findLetters(item) {
  	}
  	
  }
+
+ function audioPlay(filename) {
+ 		document.getElementById("myaudio").innerHTML='<audio autoplay="autoplay"><source src="' + filename + '.mp3" type="audio/mpeg"><embed hidden="true" autostart="true" loop="false" volume="0.7" src="' + filename +'.mp3"></audio>';
+
+ }
+
+ 
+ function delaywinAlert() {
+ 		if (confirm("YOU WON!\nPlay Again?")) {
+ 			initialize();
+ 			clearTimeout;
+ 		}
+ 		else { 
+ 			alert("GAME OVER!")
+ 			clearTimeout; }
+ }
+
+function delaylossAlert() {
+		if (confirm("YOU LOST!\nPlay Again?")) {
+ 			initialize();
+ 			clearTimeout;
+ 		}
+ 		else { 
+ 			alert("GAME OVER!")
+ 			clearTimeout;}
+ }
+
+
  function winorLose() {
  	console.log(winCounter)
  	if (movieTitleArray.indexOf("_") < 0) {
@@ -110,31 +141,28 @@ function findLetters(item) {
  		winCounter++;
  		var b = movieArray.indexOf(computerPickU)
  		document.getElementById("moviepic").src = moviepicArray[b];
+ 		audioPlay(win);
  		/*console.log("after increment: " + winCounter);*/
  		document.getElementById("wincount").innerHTML = (winCounter + " -");
  		document.getElementById("losscount").innerHTML = ("- " + lossCounter);
  		document.getElementById("answer").innerHTML = computerPickU;
-
- 		if (confirm("YOU WON!\nPlay Again?")) {
- 			initialize();
- 		}
- 		else { alert("GAME OVER!")}
+ 		guessList = "";
+ 		document.getElementById("letters").innerHTML = guessList;
+console.log("yeti");
+ 		setTimeout(delaywinAlert, 3500);
  	}
  	else if (guessCounter <= 0) {
  		// you lost - update picture - update loss count
  		lossCounter++;
+ 		audioPlay(lose);
  		var b = movieArray.indexOf(computerPickU)
  		document.getElementById("moviepic").src = moviepicArray[b];
  		document.getElementById("wincount").innerHTML = (winCounter + " -");
  		document.getElementById("losscount").innerHTML = ("- " + lossCounter);
  		document.getElementById("answer").innerHTML = computerPickU;
- 		
- 		if (confirm("YOU LOST!\nPlay Again?")) {
- 			initialize();
- 		}
- 		else { alert("GAME OVER!")}
+ 		setTimeout(delaylossAlert, 2500);
  	}
- }
+}
 
 document.onkeyup = function(event) {
 	var pressedButtonL = event.key;
