@@ -6,12 +6,11 @@ body {
 }
 .mybackground {
 	background-image: url(../images/my-screen.png);
-	margin-left: 10px;
 	background-repeat: no-repeat;
 }
 .myimage {
-	width: 325px;
-	height: 200px;
+	max-width: 325px;
+	height: 150px;
 }
 .myletters {
 	font-weight: 500;

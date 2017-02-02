@@ -160,7 +160,7 @@ console.log("yeti");
  		document.getElementById("wincount").innerHTML = (winCounter + " -");
  		document.getElementById("losscount").innerHTML = ("- " + lossCounter);
  		document.getElementById("answer").innerHTML = computerPickU;
- 		setTimeout(delaylossAlert, 2500);
+ 		setTimeout(delaylossAlert, 3000);
  	}
 }
 
