@@ -19,6 +19,7 @@ var movieTitleArray = [];
 var guessCorrect = "";
 var win = "../Hangman-Game/assets/audio/applause"
 var lose = "../Hangman-Game/assets/audio/sad-trombone"
+var hgcounter = 1;
 //for (i=0; i < movieArray.length; ++i) {
 //	console.log(i + "=" + movieArray[i] + " - " + moviepicArray[i])
 //}
@@ -31,6 +32,8 @@ var lose = "../Hangman-Game/assets/audio/sad-trombone"
 function initialize() {
 	pressedButtonArray = [];
 	guessCounter = 10;
+	/*reset hangman image for next game*/
+	document.getElementById("hangman").src = ("assets/images/hg0.jpg");
 	guessList = "";
 	computerPickU = movieArray[Math.floor(Math.random() * movieArray.length)]; /*pick random movie*/
 	computerPick = computerPickU.toUpperCase(); /*convert to all uppercase*/
@@ -46,7 +49,7 @@ function initialize() {
     document.getElementById("guesscount").innerHTML = guessCounter;
     document.getElementById("letters").innerHTML = guessList;
 
-}
+} /* run initialize function*/
 initialize();
 
 /* print guessed letters to screen*/
@@ -103,6 +106,8 @@ function findLetters(item) {
  	else {
  		guessCounter--;
  		document.getElementById("guesscount").innerHTML = guessCounter;
+ 		document.getElementById("hangman").src = ("assets/images/hg" + hgcounter + ".jpg");
+ 		hgcounter++;
  	}
  	
  }

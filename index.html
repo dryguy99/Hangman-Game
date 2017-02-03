@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Hangman | by Timothy Dry</title>
-	<link href="https://fonts.googleapis.com/css?family=Coiny|Francois+One|Hammersmith+One|Merriweather|Racing+Sans+One|Rammetto+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Hammersmith+One" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script
@@ -18,14 +18,14 @@
 		<div class="row panel-transparent">
 		 <div class="col-xs-12 col-sm-12 col-md-12 text-center panel-transparent">
 			<h1>Movie Hangman</h1>
-			<!-- the following will only appear after a win -->
 			<h2>Answer:</h2>
+			<!-- the following will only appear after a win -->
 			<h2 id="answer"></h2>
 		</div>
 	<div class="row panel-transparent">
-		<!-- movie picture -->
+		<!-- hangman pictures and movie picture -->
 		<div class="col-xs-12 col-sm-12 col-md-6 panel-transparent text-center">
-			<img class="myimage1" id="hangman" src="assets/images/hg1.jpg" alt="Gallows">
+			<img class="myimage1" id="hangman" src="assets/images/hg0.jpg" alt="Gallows">
 			<img class="myimage" id="moviepic" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTa404prlIeyigh2tPVw-o0GCb_aSGzUqExM3D4oTxBZHN93ToB-6u-N3pp" alt="Best Picture Winner">
 		</div>
 		<!-- game play pannel -->
@@ -51,20 +51,20 @@
 				<br>
 			</div>
 		</div>
-		</div>
+		</div> <!-- play win or lose sound effects-->
 			<audio id="myaudio">
 			Your browser does not support the audio element.
-			</audio><
+			</audio>
 		</div>
-	</section>
-	<nav class="navbar-fixed-bottom">	
+	</section> <!-- footer, copyright and img liscence requirements-->
+		
 		<footer class="row footer container-fluid">
  			<div class="col-sm-12 text-center">
  				<a href="http://www.freepik.com/free-photos-vectors/stage">Stage vector designed by Freepik</a>
  				<h4>Copyright &copy; 2017 Timothy Dry</h4>
 			</div>
 		</footer>
-	</nav>
+	
 
 </body>
 <script type="text/javascript" language="javascript" src="assets/javascript/game.js"> </script>

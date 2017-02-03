@@ -9,6 +9,7 @@ body {
 	letter-spacing: 2px;
 }
 .mybackground {
+	margin-top: 5px;
 	background-image: url(../images/my-screen.png);
 	background-repeat: no-repeat;
 }
@@ -24,21 +25,18 @@ body {
 	font-weight: 500;
 }
 .footer {
+	position: relative;
 	box-sizing: border-box;
-	margin-top: 100px;
+	margin-top: 50px;
 	font-size: 14px;
 	height: 50px;
 }
-#myaudio {
-
+#losscount {
+	color: #F75D79;
+}
+#guesscount {
+	color: #F75D79;
 }
 .panel-transparent {
 	background: none;
 }
-/*
-font-family: 'Racing Sans One', cursive;
-font-family: 'Rammetto One', cursive;
-font-family: 'Merriweather', serif;
-font-family: 'Francois One', sans-serif;
-font-family: 'Coiny', cursive;
-font-family: 'Hammersmith One', sans-serif;*/
