@@ -2,22 +2,32 @@ body {
 	width: 960px;
 	margin: 0px auto;
 	font-size: 22px;
-	color: #98AFC7;
+	color: #ccf2ff;
+	padding-bottom: 70px;
+	background-color: black;
+	font-family: 'Hammersmith One', sans-serif;
+	letter-spacing: 2px;
 }
 .mybackground {
 	background-image: url(../images/my-screen.png);
 	background-repeat: no-repeat;
 }
 .myimage {
-	max-width: 325px;
+	max-width: 300px;
 	height: 150px;
+}
+.myimage1 {
+	max-width: 200px;
+
 }
 .myletters {
 	font-weight: 500;
 }
 .footer {
+	box-sizing: border-box;
 	margin-top: 100px;
 	font-size: 14px;
+	height: 50px;
 }
 #myaudio {
 
@@ -25,3 +35,10 @@ body {
 .panel-transparent {
 	background: none;
 }
+/*
+font-family: 'Racing Sans One', cursive;
+font-family: 'Rammetto One', cursive;
+font-family: 'Merriweather', serif;
+font-family: 'Francois One', sans-serif;
+font-family: 'Coiny', cursive;
+font-family: 'Hammersmith One', sans-serif;*/
