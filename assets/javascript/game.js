@@ -154,7 +154,7 @@ function delaylossAlert() {
  		document.getElementById("answer").innerHTML = computerPickU;
  		guessList = "";
  		document.getElementById("letters").innerHTML = guessList;
-console.log("yeti");
+/*console.log("yeti");*/
  		setTimeout(delaywinAlert, 3500);
  	}
  	else if (guessCounter <= 0) {
