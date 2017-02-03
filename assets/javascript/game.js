@@ -37,7 +37,7 @@ function initialize() {
 	guessList = "";
 	computerPickU = movieArray[Math.floor(Math.random() * movieArray.length)]; /*pick random movie*/
 	computerPick = computerPickU.toUpperCase(); /*convert to all uppercase*/
-    console.log(computerPick);/*print to console for testing*/
+    /*console.log(computerPick);/*print to console for testing*/
     /*create the correct blank lengths & display and later fill in*/
     movietitleWithBlanks = computerPick.replace(/ /g,"9").replace(/\D/g, "_").replace(/9/g, '-'); 
     document.getElementById("movie").innerHTML = movietitleWithBlanks;
@@ -58,9 +58,9 @@ function printLetters(){
   		for(var i=0; i < pressedButtonArray.length; ++i){
       		guessList = (guessList + pressedButtonArray[i] + " ");
  			};
-  	console.log("outside: " + guessList);
+  	/*console.log("outside: " + guessList);*/
   	document.getElementById("letters").innerHTML = guessList;
-  	console.log("captured");
+  	/*console.log("captured");*/
 }		
 
 /* check to see if selected letter is unique & add unique to array*/
@@ -70,13 +70,13 @@ function compareLetters(item) {
 		pressedButtonArray.push(item);
 		};	
 }
-
+/* this function finds the position(s) of the correctly guessed letter and displays them on the screen*/
 function correctGuess() {
 		guessCorrect = "";
   			for(var i=0; i < movieTitleArray.length; ++i){
       			guessCorrect = (guessCorrect + movieTitleArray[i] + " ");
  			};
-  		console.log("outside: " + guessCorrect);
+  		/*console.log("outside: " + guessCorrect);*/
   		document.getElementById("movie").innerHTML = guessCorrect;
 }
  		
@@ -90,7 +90,7 @@ function findLetters(item) {
  		movieTitleArray[a] = item;
  		a += 1;
  		correctGuess();
- 		console.log("index: " + a + " " + item + " " + movieTitleArray);
+ 		/*console.log("index: " + a + " " + item + " " + movieTitleArray);*/
  		while ((checkArray.length - 1) >= a) {
  			if ((checkArray.indexOf(item, a) > 0) && (checkArray.indexOf(item, a) < checkArray.length)) {
  				var b = checkArray.indexOf(item, a);
@@ -117,7 +117,7 @@ function findLetters(item) {
 
  }
 
- 
+ /* creates a delay to allow the screen to update and the sound to play*/
  function delaywinAlert() {
  		if (confirm("YOU WON!\nPlay Again?")) {
  			initialize();
@@ -127,7 +127,7 @@ function findLetters(item) {
  			alert("GAME OVER!")
  			clearTimeout; }
  }
-
+/* creates a delay to allow the screen to update and the sound to play*/
 function delaylossAlert() {
 		if (confirm("YOU LOST!\nPlay Again?")) {
  			initialize();
@@ -138,9 +138,9 @@ function delaylossAlert() {
  			clearTimeout;}
  }
 
-
+ /* this function checks to see if someone has won or lost the game*/
  function winorLose() {
- 	console.log(winCounter)
+ 	/*console.log(winCounter)*/
  	if (movieTitleArray.indexOf("_") < 0) {
  		// you won message - update picture - update win count -
  		winCounter++;
@@ -148,6 +148,7 @@ function delaylossAlert() {
  		document.getElementById("moviepic").src = moviepicArray[b];
  		audioPlay(win);
  		/*console.log("after increment: " + winCounter);*/
+ 		/* this updates the screen win counter, posts the correct answer & updates the picture*/
  		document.getElementById("wincount").innerHTML = (winCounter + " -");
  		document.getElementById("losscount").innerHTML = ("- " + lossCounter);
  		document.getElementById("answer").innerHTML = computerPickU;
@@ -168,7 +169,7 @@ console.log("yeti");
  		setTimeout(delaylossAlert, 3000);
  	}
 }
-
+/* this section runs the game and calls all the other functions*/
 document.onkeyup = function(event) {
 	var pressedButtonL = event.key;
 	pressedButton = pressedButtonL.toUpperCase();
