@@ -34,6 +34,7 @@ function initialize() {
 	guessCounter = 10;
 	/*reset hangman image for next game*/
 	document.getElementById("hangman").src = ("assets/images/hg0.jpg");
+	hgcounter =1;
 	guessList = "";
 	computerPickU = movieArray[Math.floor(Math.random() * movieArray.length)]; /*pick random movie*/
 	computerPick = computerPickU.toUpperCase(); /*convert to all uppercase*/
