@@ -1,6 +1,7 @@
 /* add jQuery to javascript*/
 
 /* define varibles*/
+var z1 = 0;
 var guessCounter = 10;
 var winCounter = 0;
 var lossCounter = 0;
@@ -33,7 +34,7 @@ function initialize() {
 	pressedButtonArray = [];
 	guessCounter = 10;
 	/*reset hangman image for next game*/
-	document.getElementById("hangman").src = ("assets/images/hg0.jpg");
+	document.getElementById("hangman").src = ("assets/images/hg0.jpeg");
 	hgcounter =1;
 	guessList = "";
 	computerPickU = movieArray[Math.floor(Math.random() * movieArray.length)]; /*pick random movie*/
@@ -50,13 +51,14 @@ function initialize() {
     document.getElementById("guesscount").innerHTML = guessCounter;
     document.getElementById("letters").innerHTML = guessList;
 
-} /* run initialize function*/
-initialize();
-
+} /* wait for load and run initialize function*/
+$(document).ready( function() {
+	initialize();
+});
 /* print guessed letters to screen*/
 function printLetters(){
   	guessList = "";
-  		for(var i=0; i < pressedButtonArray.length; ++i){
+  		for(var i=0; i < pressedButtonArray.length; i++){
       		guessList = (guessList + pressedButtonArray[i] + " ");
  			};
   	/*console.log("outside: " + guessList);*/
@@ -69,7 +71,12 @@ function compareLetters(item) {
 	
 	if (!(pressedButtonArray.indexOf(item) > -1) ) {
 		pressedButtonArray.push(item);
-		};	
+		inArray = 0;
+		console.log(item + " is in array, inArray = " + inArray);
+		}	
+	else { 
+		inArray = 1;
+		console.log(item + "is NOT in array, inArray = " + inArray)}
 }
 /* this function finds the position(s) of the correctly guessed letter and displays them on the screen*/
 function correctGuess() {
@@ -105,10 +112,16 @@ function findLetters(item) {
  		a = 0;
  	}
  	else {
- 		guessCounter--;
- 		document.getElementById("guesscount").innerHTML = guessCounter;
- 		document.getElementById("hangman").src = ("assets/images/hg" + hgcounter + ".jpg");
- 		hgcounter++;
+ 		if ((guessCounter > 0) && (inArray === 0)) {
+ 			console.log("before guessCounter, inArray = " + inArray);
+ 			guessCounter--;
+ 			document.getElementById("guesscount").innerHTML = guessCounter;
+ 			document.getElementById("hangman").src = ("assets/images/hg" + hgcounter + ".jpeg");
+ 			hgcounter++;
+ 			inArray = 1;}
+ 		else if (guessCounter === 0) {
+ 			document.getElementById("guesscount").innerHTML = guessCounter;
+ 			}
  	}
  	
  }
@@ -140,47 +153,52 @@ function delaylossAlert() {
  }
 
  /* this function checks to see if someone has won or lost the game*/
+
  function winorLose() {
  	/*console.log(winCounter)*/
  	if (movieTitleArray.indexOf("_") < 0) {
  		// you won message - update picture - update win count -
+ 		audioPlay(win);
  		winCounter++;
  		var b = movieArray.indexOf(computerPickU)
  		document.getElementById("moviepic").src = moviepicArray[b];
- 		audioPlay(win);
  		/*console.log("after increment: " + winCounter);*/
  		/* this updates the screen win counter, posts the correct answer & updates the picture*/
- 		document.getElementById("wincount").innerHTML = (winCounter + " -");
- 		document.getElementById("losscount").innerHTML = ("- " + lossCounter);
+ 		document.getElementById("wincount").innerHTML = (winCounter + " -- ");
+ 		document.getElementById("losscount").innerHTML = (lossCounter);
  		document.getElementById("answer").innerHTML = computerPickU;
  		guessList = "";
  		document.getElementById("letters").innerHTML = guessList;
 /*console.log("yeti");*/
  		setTimeout(delaywinAlert, 3500);
  	}
- 	else if (guessCounter <= 0) {
- 		// you lost - update picture - update loss count
- 		lossCounter++;
- 		audioPlay(lose);
- 		var b = movieArray.indexOf(computerPickU)
- 		document.getElementById("moviepic").src = moviepicArray[b];
- 		document.getElementById("wincount").innerHTML = (winCounter + " -");
- 		document.getElementById("losscount").innerHTML = ("- " + lossCounter);
- 		document.getElementById("answer").innerHTML = computerPickU;
- 		setTimeout(delaylossAlert, 3000);
+ 	else if (guessCounter === 0) {
+ 			audioPlay(lose);
+ 			// you lost - update picture - update loss count
+ 			lossCounter++;
+ 			var b = movieArray.indexOf(computerPickU)
+ 			document.getElementById("moviepic").src = moviepicArray[b];
+ 			document.getElementById("wincount").innerHTML = (winCounter + " -- ");
+ 			document.getElementById("losscount").innerHTML = (lossCounter);
+ 			document.getElementById("answer").innerHTML = computerPickU;
+ 			setTimeout(delaylossAlert, 3000);
+ 		
  	}
 }
+
 /* this section runs the game and calls all the other functions*/
+
 document.onkeyup = function(event) {
-	var pressedButtonL = event.key;
-	pressedButton = pressedButtonL.toUpperCase();
-	
-	if (inArray === 0) {
-		pressedButtonArray.push(pressedButton);
-		inArray = 1;
-		};
-	findLetters(pressedButton);
-	compareLetters(pressedButton);
-	printLetters();
-	winorLose();
-} 
+	var inp = String.fromCharCode(event.keyCode);
+	if (/[a-zA-Z]/.test(inp)){
+    	/*alert("input was a letter");*/
+		var pressedButtonL = event.key;
+		pressedButton = pressedButtonL.toUpperCase();
+		
+		compareLetters(pressedButton);
+		findLetters(pressedButton);
+		printLetters();
+		winorLose();
+	} 
+	else { alert(inp + " is not a letter.")}
+}

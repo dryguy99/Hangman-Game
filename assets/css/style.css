@@ -21,6 +21,9 @@ body {
 	max-width: 200px;
 
 }
+#movie {
+	font-size: 18px;
+}
 .myletters {
 	font-weight: 500;
 }
@@ -39,4 +42,13 @@ body {
 }
 .panel-transparent {
 	background: none;
+}
+@media screen and (max-width: 640px) {
+	body {
+		font-size: 18px;
+	}
+	#movie {
+		font-size: 14px;
+	}
+
 }
