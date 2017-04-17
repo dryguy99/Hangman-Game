@@ -182,7 +182,7 @@ $(document).on("keyup", function(event) {
 				endgame = false;
 				$("#directions").css("display", "none");
 				$("#error").css("display", "block");
-				$("#error").html(" GAME OVER !!!");
+				$("#error").html(" GAME OVER !!!<br>Thanks for Playing.");
 				$(document).off("keyup");
 
 			} else {
