@@ -22,12 +22,13 @@ var win = "assets/audio/applause"
 var lose = "assets/audio/sad-trombone"
 var hgcounter = 1;
 var endgame = false;
+var reset = true;
 
 
 
 /* start game by picking  movie title at random and set spaces for words */
 function initialize() {
-	$("#directions").html("To make your first guess, <br>Press Any letter.");
+	$("#directions").html("To make a guess, <br>Press Any letter.");
 	pressedButtonArray = [];
 	guessCounter = 10;
 	/*reset hangman image for next game*/
@@ -132,8 +133,12 @@ function delaylossAlert() {
 
  function winorLose() {
  	if (movieTitleArray.indexOf("_") < 0) {
- 		// you won message - update picture - update win count -
  		audioPlay(win);
+ 		if (reset) {
+ 			reset = false;
+ 			$("#theanswer").css("display", "block");
+ 		}
+ 		// you won message - update picture - update win count -
  		winCounter++;
  		var b = movieArray.indexOf(computerPickU)
  		document.getElementById("moviepic").src = moviepicArray[b];
@@ -150,6 +155,10 @@ function delaylossAlert() {
  	}
  	else if (guessCounter === 0) {
  			audioPlay(lose);
+ 			if (reset) {
+ 			reset = false;
+ 			$("#theanswer").css("display", "block");
+ 			}
  			// you lost - update picture - update loss count
  			lossCounter++;
  			var b = movieArray.indexOf(computerPickU)
@@ -185,7 +194,7 @@ $(document).on("keyup", function(event) {
 				$("#error").html(" GAME OVER !!!<br>Thanks for Playing.");
 				$(document).off("keyup");
 
-			} else {
+			} else if (!endgame){
 				$("#myletter").val("");
 				pressedButton = pressedButtonL.toUpperCase();
 				compareLetters(pressedButton);

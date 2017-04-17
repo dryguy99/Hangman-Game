@@ -58,6 +58,9 @@ body {
 	background: yellow;
 	color: black;
 }
+#theanswer {
+	display:none;
+}
 
 @media screen and (max-width: 640px) {
 	body {
