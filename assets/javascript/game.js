@@ -177,6 +177,7 @@ function delaylossAlert() {
 
 $(document).on("keyup", function(event) {
 	var inp = String.fromCharCode(event.keyCode);
+	$(".myletter").val("");
 		if (/[a-zA-Z]/.test(inp)){
 			$("#error").css("display", "none");
 	    	/*alert("input was a letter");*/
@@ -184,7 +185,6 @@ $(document).on("keyup", function(event) {
 			inp = inp.toLowerCase();
 			if (endgame && inp === "y") {
 				endgame = false;
-				$("#myletter").val("");
 				initialize();
 		 		clearTimeout;
 			} else if (endgame && inp === "n") {
@@ -195,7 +195,6 @@ $(document).on("keyup", function(event) {
 				$(document).off("keyup");
 
 			} else if (!endgame){
-				$("#myletter").val("");
 				pressedButton = pressedButtonL.toUpperCase();
 				compareLetters(pressedButton);
 				findLetters(pressedButton);

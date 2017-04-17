@@ -44,13 +44,13 @@ body {
 	background: none;
 }
 
-#myletter {
+.myletter {
 	max-width: 2vw;
 	background: #ba0000;
 	color:white;
 	border: none;
 }
-#myletter:focus {
+.myletter:focus {
 	outline: none;
 }
 #error {
@@ -61,7 +61,7 @@ body {
 #theanswer {
 	display:none;
 }
-#me, #me:hover, #me:focus, #me:visited {
+#me, a#me:hover, a#me:focus, a#me:visited {
 	color:white;
 }
 
