@@ -189,6 +189,7 @@ function delaylossAlert() {
 /* this section runs the game and calls all the other functions*/
 
 document.onkeyup = function(event) {
+	$("#myletter").val("");
 	var inp = String.fromCharCode(event.keyCode);
 	if (/[a-zA-Z]/.test(inp)){
     	/*alert("input was a letter");*/

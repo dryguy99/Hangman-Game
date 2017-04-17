@@ -43,6 +43,17 @@ body {
 .panel-transparent {
 	background: none;
 }
+
+#myletter {
+	max-width: 2vw;
+	background: #ba0000;
+	color:white;
+	border: none;
+}
+#myletter:focus {
+	outline: none;
+}
+
 @media screen and (max-width: 640px) {
 	body {
 		font-size: 18px;
@@ -51,4 +62,10 @@ body {
 		font-size: 14px;
 	}
 
+}
+
+@media screen and (min-width: 1367px) {
+	#myletter{
+		display:none;
+	}
 }
