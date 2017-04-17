@@ -21,16 +21,13 @@ var guessCorrect = "";
 var win = "assets/audio/applause"
 var lose = "assets/audio/sad-trombone"
 var hgcounter = 1;
-//for (i=0; i < movieArray.length; ++i) {
-//	console.log(i + "=" + movieArray[i] + " - " + moviepicArray[i])
-//}
-
-
+var endgame = false;
 
 
 
 /* start game by picking  movie title at random and set spaces for words */
 function initialize() {
+	$("#directions").html("To make your first guess, <br>Press Any letter.");
 	pressedButtonArray = [];
 	guessCounter = 10;
 	/*reset hangman image for next game*/
@@ -61,9 +58,7 @@ function printLetters(){
   		for(var i=0; i < pressedButtonArray.length; i++){
       		guessList = (guessList + pressedButtonArray[i] + " ");
  			};
-  	/*console.log("outside: " + guessList);*/
   	document.getElementById("letters").innerHTML = guessList;
-  	/*console.log("captured");*/
 }		
 
 /* check to see if selected letter is unique & add unique to array*/
@@ -72,11 +67,8 @@ function compareLetters(item) {
 	if (!(pressedButtonArray.indexOf(item) > -1) ) {
 		pressedButtonArray.push(item);
 		inArray = 0;
-		console.log(item + " is in array, inArray = " + inArray);
-		}	
-	else { 
-		inArray = 1;
-		console.log(item + "is NOT in array, inArray = " + inArray)}
+	}else { 
+		inArray = 1;}
 }
 /* this function finds the position(s) of the correctly guessed letter and displays them on the screen*/
 function correctGuess() {
@@ -84,7 +76,6 @@ function correctGuess() {
   			for(var i=0; i < movieTitleArray.length; ++i){
       			guessCorrect = (guessCorrect + movieTitleArray[i] + " ");
  			};
-  		/*console.log("outside: " + guessCorrect);*/
   		document.getElementById("movie").innerHTML = guessCorrect;
 }
  		
@@ -98,14 +89,12 @@ function findLetters(item) {
  		movieTitleArray[a] = item;
  		a += 1;
  		correctGuess();
- 		/*console.log("index: " + a + " " + item + " " + movieTitleArray);*/
  		while ((checkArray.length - 1) >= a) {
  			if ((checkArray.indexOf(item, a) > 0) && (checkArray.indexOf(item, a) < checkArray.length)) {
  				var b = checkArray.indexOf(item, a);
  				movieTitleArray[b] = item;
  				a = b + 1;
  				correctGuess();
- 				/*console.log("WL - index: " + a + b + " " + item + " " + movieTitleArray);*/
  			}
  				else {a += 1;}
  		}
@@ -113,7 +102,6 @@ function findLetters(item) {
  	}
  	else {
  		if ((guessCounter > 0) && (inArray === 0)) {
- 			console.log("before guessCounter, inArray = " + inArray);
  			guessCounter--;
  			document.getElementById("guesscount").innerHTML = guessCounter;
  			document.getElementById("hangman").src = ("assets/images/hg" + hgcounter + ".jpeg");
@@ -133,44 +121,32 @@ function findLetters(item) {
 
  /* creates a delay to allow the screen to update and the sound to play*/
  function delaywinAlert() {
- 		if (confirm("YOU WON!\nPlay Again?")) {
- 			initialize();
- 			clearTimeout;
- 		}
- 		else { 
- 			alert("GAME OVER!")
- 			clearTimeout; }
+ 	$("#directions").html("You Won !!!<br>Do you want to PLAY AGAIN?");
  }
 /* creates a delay to allow the screen to update and the sound to play*/
 function delaylossAlert() {
-		if (confirm("YOU LOST!\nPlay Again?")) {
- 			initialize();
- 			clearTimeout;
- 		}
- 		else { 
- 			alert("GAME OVER!")
- 			clearTimeout;}
+	$("#directions").html("You Lost !!!<br>Do you want to PLAY AGAIN?");
  }
 
  /* this function checks to see if someone has won or lost the game*/
 
  function winorLose() {
- 	/*console.log(winCounter)*/
  	if (movieTitleArray.indexOf("_") < 0) {
  		// you won message - update picture - update win count -
  		audioPlay(win);
  		winCounter++;
  		var b = movieArray.indexOf(computerPickU)
  		document.getElementById("moviepic").src = moviepicArray[b];
- 		/*console.log("after increment: " + winCounter);*/
+ 		
  		/* this updates the screen win counter, posts the correct answer & updates the picture*/
  		document.getElementById("wincount").innerHTML = (winCounter + " -- ");
  		document.getElementById("losscount").innerHTML = (lossCounter);
  		document.getElementById("answer").innerHTML = computerPickU;
  		guessList = "";
  		document.getElementById("letters").innerHTML = guessList;
-/*console.log("yeti");*/
- 		setTimeout(delaywinAlert, 3500);
+ 		endgame = true;
+ 		$("#directions").html("You Won !!!<br>Do you want to PLAY AGAIN?<br>y for yes OR n for no");
+ 		//setTimeout(delaywinAlert, 3500);
  	}
  	else if (guessCounter === 0) {
  			audioPlay(lose);
@@ -181,25 +157,44 @@ function delaylossAlert() {
  			document.getElementById("wincount").innerHTML = (winCounter + " -- ");
  			document.getElementById("losscount").innerHTML = (lossCounter);
  			document.getElementById("answer").innerHTML = computerPickU;
- 			setTimeout(delaylossAlert, 3000);
+ 			endgame = true;
+ 			$("#directions").html("You Lost !!!<br>Do you want to PLAY AGAIN?<br>y for yes OR n for no");
+ 			//setTimeout(delaylossAlert, 3000);
  		
  	}
 }
 
 /* this section runs the game and calls all the other functions*/
 
-document.onkeyup = function(event) {
-	$("#myletter").val("");
+$(document).on("keyup", function(event) {
 	var inp = String.fromCharCode(event.keyCode);
-	if (/[a-zA-Z]/.test(inp)){
-    	/*alert("input was a letter");*/
-		var pressedButtonL = event.key;
-		pressedButton = pressedButtonL.toUpperCase();
-		
-		compareLetters(pressedButton);
-		findLetters(pressedButton);
-		printLetters();
-		winorLose();
-	} 
-	else { alert(inp + " is not a letter.")}
-}
+		if (/[a-zA-Z]/.test(inp)){
+			$("#error").css("display", "none");
+	    	/*alert("input was a letter");*/
+			var pressedButtonL = event.key;
+			inp = inp.toLowerCase();
+			if (endgame && inp === "y") {
+				endgame = false;
+				$("#myletter").val("");
+				initialize();
+		 		clearTimeout;
+			} else if (endgame && inp === "n") {
+				endgame = false;
+				$("#directions").css("display", "none");
+				$("#error").css("display", "block");
+				$("#error").html(" GAME OVER !!!");
+				$(document).off("keyup");
+
+			} else {
+				$("#myletter").val("");
+				pressedButton = pressedButtonL.toUpperCase();
+				compareLetters(pressedButton);
+				findLetters(pressedButton);
+				printLetters();
+				winorLose();
+				} 
+		}else { 
+			$("#error").css("display", "block");
+			$("#error").html(inp + " is not a letter. <br>Please enter a letter.");}
+	
+});

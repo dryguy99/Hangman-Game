@@ -53,6 +53,11 @@ body {
 #myletter:focus {
 	outline: none;
 }
+#error {
+	display: none;
+	background: yellow;
+	color: black;
+}
 
 @media screen and (max-width: 640px) {
 	body {
